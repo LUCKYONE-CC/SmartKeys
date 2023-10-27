@@ -41,7 +41,7 @@
             // 
             // tB_title
             // 
-            tB_title.Location = new Point(310, 125);
+            tB_title.Location = new Point(223, 50);
             tB_title.Name = "tB_title";
             tB_title.Size = new Size(156, 23);
             tB_title.TabIndex = 0;
@@ -49,7 +49,7 @@
             // lab_title
             // 
             lab_title.AutoSize = true;
-            lab_title.Location = new Point(310, 107);
+            lab_title.Location = new Point(223, 32);
             lab_title.Name = "lab_title";
             lab_title.Size = new Size(29, 15);
             lab_title.TabIndex = 1;
@@ -58,7 +58,7 @@
             // lab_username
             // 
             lab_username.AutoSize = true;
-            lab_username.Location = new Point(310, 163);
+            lab_username.Location = new Point(223, 88);
             lab_username.Name = "lab_username";
             lab_username.Size = new Size(60, 15);
             lab_username.TabIndex = 3;
@@ -66,7 +66,7 @@
             // 
             // tB_username
             // 
-            tB_username.Location = new Point(310, 181);
+            tB_username.Location = new Point(223, 106);
             tB_username.Name = "tB_username";
             tB_username.Size = new Size(156, 23);
             tB_username.TabIndex = 2;
@@ -74,7 +74,7 @@
             // lab_password
             // 
             lab_password.AutoSize = true;
-            lab_password.Location = new Point(310, 207);
+            lab_password.Location = new Point(223, 132);
             lab_password.Name = "lab_password";
             lab_password.Size = new Size(57, 15);
             lab_password.TabIndex = 5;
@@ -82,7 +82,7 @@
             // 
             // tB_password
             // 
-            tB_password.Location = new Point(310, 225);
+            tB_password.Location = new Point(223, 150);
             tB_password.Name = "tB_password";
             tB_password.PasswordChar = '*';
             tB_password.Size = new Size(156, 23);
@@ -91,7 +91,7 @@
             // 
             // rtB_description
             // 
-            rtB_description.Location = new Point(310, 269);
+            rtB_description.Location = new Point(223, 194);
             rtB_description.Name = "rtB_description";
             rtB_description.Size = new Size(156, 71);
             rtB_description.TabIndex = 6;
@@ -101,7 +101,7 @@
             // lab_description
             // 
             lab_description.AutoSize = true;
-            lab_description.Location = new Point(310, 251);
+            lab_description.Location = new Point(223, 176);
             lab_description.Name = "lab_description";
             lab_description.Size = new Size(67, 15);
             lab_description.TabIndex = 7;
@@ -109,7 +109,7 @@
             // 
             // btn_save
             // 
-            btn_save.Location = new Point(310, 375);
+            btn_save.Location = new Point(263, 271);
             btn_save.Name = "btn_save";
             btn_save.Size = new Size(75, 23);
             btn_save.TabIndex = 8;
@@ -121,7 +121,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(616, 358);
             Controls.Add(btn_save);
             Controls.Add(lab_description);
             Controls.Add(rtB_description);
