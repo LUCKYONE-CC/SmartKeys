@@ -69,15 +69,28 @@ namespace SmartKeys
 
         private void btn_ceateNewVault_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Konfigurationsdatei|*.kv";
-            saveFileDialog.Title = "Neue Konfigurationsdatei erstellen";
-            saveFileDialog.DefaultExt = "kv";
-            saveFileDialog.FileName = "newvault.kv";
+            // Öffnen des Passwortdialogs
+            CreateVaultDialog passwordDialog = new CreateVaultDialog();
 
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            // Zeige den Dialog und überprüfe, ob der Benutzer auf "OK" klickt
+            DialogResult result = passwordDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
             {
-                KVHandler.GenerateKV(saveFileDialog.FileName, "test", saveFileDialog.FileName);
+                string enteredPassword = passwordDialog.Password;
+
+                // Überprüfen Sie hier die Stärke des Passworts und handeln Sie entsprechend
+
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Konfigurationsdatei|*.kv";
+                saveFileDialog.Title = "Neue Konfigurationsdatei erstellen";
+                saveFileDialog.DefaultExt = "kv";
+                saveFileDialog.FileName = "newvault.kv";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    KVHandler.GenerateKV(saveFileDialog.FileName, enteredPassword, saveFileDialog.FileName);
+                }
             }
         }
     }
