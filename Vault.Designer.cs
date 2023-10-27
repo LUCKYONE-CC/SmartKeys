@@ -37,14 +37,14 @@
             // 
             lB_entryListBox.FormattingEnabled = true;
             lB_entryListBox.ItemHeight = 15;
-            lB_entryListBox.Location = new Point(12, 12);
+            lB_entryListBox.Location = new Point(12, 42);
             lB_entryListBox.Name = "lB_entryListBox";
-            lB_entryListBox.Size = new Size(120, 424);
+            lB_entryListBox.Size = new Size(156, 394);
             lB_entryListBox.TabIndex = 0;
             // 
             // btn_createEntry
             // 
-            btn_createEntry.Location = new Point(670, 174);
+            btn_createEntry.Location = new Point(12, 12);
             btn_createEntry.Name = "btn_createEntry";
             btn_createEntry.Size = new Size(75, 23);
             btn_createEntry.TabIndex = 1;
@@ -54,7 +54,7 @@
             // 
             // btn_deleteEntry
             // 
-            btn_deleteEntry.Location = new Point(363, 214);
+            btn_deleteEntry.Location = new Point(93, 12);
             btn_deleteEntry.Name = "btn_deleteEntry";
             btn_deleteEntry.Size = new Size(75, 23);
             btn_deleteEntry.TabIndex = 2;
