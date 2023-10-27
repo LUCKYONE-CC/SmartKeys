@@ -1,3 +1,4 @@
+# 🛠️ Currently under maintenance 🛠️
 # SmartKeys Vault Manager
 
 SmartKeys Vault Manager is a C# application that allows users to securely manage their passwords and sensitive information in an encrypted vault.
