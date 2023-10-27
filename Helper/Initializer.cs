@@ -30,13 +30,13 @@ namespace SmartKeys.Helper
 
                 if (!File.Exists(configFilePath))
                 {
-                    ConfigData configData = new ConfigData
-                    {
-                        Masterpassword = "Masterpassword"
-                    };
+                    //ConfigData configData = new ConfigData
+                    //{
+                    //    Masterpassword = "Masterpassword"
+                    //};
 
-                    string jsonData = JsonConvert.SerializeObject(configData, Newtonsoft.Json.Formatting.Indented);
-                    File.WriteAllText(configFilePath, jsonData);
+                    //string jsonData = JsonConvert.SerializeObject(configData, Newtonsoft.Json.Formatting.Indented);
+                    //File.WriteAllText(configFilePath, jsonData);
 
                     Console.WriteLine("Die JSON-Konfigurationsdatei wurde erfolgreich erstellt.");
                 }

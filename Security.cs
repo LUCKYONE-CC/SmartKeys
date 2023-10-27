@@ -5,74 +5,63 @@ namespace SmartKeys
 {
     public static class Security
     {
-        public static async void EncryptFile(string inputFile, string password)
+        private static byte[] GetKeyAndIV(string password, byte[] salt)
         {
-            using (Aes aes = Aes.Create())
+            using (var deriveBytes = new Rfc2898DeriveBytes(password, salt, 10000))
             {
-                aes.KeySize = 256;
-                aes.BlockSize = 128;
-                aes.Mode = CipherMode.CFB;
-                aes.Padding = PaddingMode.PKCS7;
-
-                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
-                byte[] salt = new byte[16];
-                RandomNumberGenerator.Create().GetBytes(salt);
-
-                Rfc2898DeriveBytes keyDerivationFunction = new Rfc2898DeriveBytes(passwordBytes, salt, 10000);
-                aes.Key = keyDerivationFunction.GetBytes(aes.KeySize / 8);
-                aes.IV = keyDerivationFunction.GetBytes(aes.BlockSize / 8);
-
-                using (FileStream inputFileStream = new FileStream(inputFile, FileMode.Open))
-                using (FileStream encryptedFileStream = new FileStream(inputFile + ".ares", FileMode.Create))
-                {
-                    // Write the salt to the beginning of the file
-                    encryptedFileStream.Write(salt, 0, salt.Length);
-
-                    using (CryptoStream cs = new CryptoStream(encryptedFileStream, aes.CreateEncryptor(), CryptoStreamMode.Write))
-                    {
-                        inputFileStream.CopyTo(cs);
-                    }
-                }
-
-                File.Delete(inputFile);
+                return deriveBytes.GetBytes(48);
             }
         }
 
-        public async static void DecryptFile(string encryptedFile, string password)
+        public static string Encrypt(string plainText, string password)
         {
-            using (Aes aes = Aes.Create())
+            byte[] salt = new byte[16];
+            using (var random = new RNGCryptoServiceProvider())
             {
-                aes.KeySize = 256;
-                aes.BlockSize = 128;
-                aes.Mode = CipherMode.CFB;
-                aes.Padding = PaddingMode.PKCS7;
+                random.GetBytes(salt);
+            }
 
-                byte[] passwordBytes = Encoding.UTF8.GetBytes(password);
+            byte[] keyAndIV = GetKeyAndIV(password, salt);
 
-                // Read the salt from the beginning of the file
-                byte[] salt = new byte[16];
-                using (FileStream encryptedFileStream = new FileStream(encryptedFile, FileMode.Open))
+            using (var aes = new AesCryptoServiceProvider())
+            {
+                aes.Key = keyAndIV.Take(32).ToArray();
+                aes.IV = keyAndIV.Skip(32).ToArray();
+
+                using (var encryptor = aes.CreateEncryptor())
+                using (var memoryStream = new MemoryStream())
                 {
-                    encryptedFileStream.Read(salt, 0, salt.Length);
-                }
-
-                Rfc2898DeriveBytes keyDerivationFunction = new Rfc2898DeriveBytes(passwordBytes, salt, 10000);
-                aes.Key = keyDerivationFunction.GetBytes(aes.KeySize / 8);
-                aes.IV = keyDerivationFunction.GetBytes(aes.BlockSize / 8);
-
-                using (FileStream encryptedFileStream = new FileStream(encryptedFile, FileMode.Open))
-                using (FileStream decryptedFileStream = new FileStream(encryptedFile.Replace(".ares", ""), FileMode.Create))
-                {
-                    // Skip the salt during decryption
-                    encryptedFileStream.Seek(salt.Length, SeekOrigin.Begin);
-
-                    using (CryptoStream cs = new CryptoStream(decryptedFileStream, aes.CreateDecryptor(), CryptoStreamMode.Write))
+                    memoryStream.Write(salt, 0, salt.Length);
+                    using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
+                    using (var streamWriter = new StreamWriter(cryptoStream))
                     {
-                        encryptedFileStream.CopyTo(cs);
+                        streamWriter.Write(plainText);
                     }
-                }
 
-                File.Delete(encryptedFile);
+                    return Convert.ToBase64String(memoryStream.ToArray());
+                }
+            }
+        }
+
+        public static string Decrypt(string cipherText, string password)
+        {
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+
+            byte[] salt = cipherBytes.Take(16).ToArray();
+            byte[] keyAndIV = GetKeyAndIV(password, salt);
+
+            using (var aes = new AesCryptoServiceProvider())
+            {
+                aes.Key = keyAndIV.Take(32).ToArray();
+                aes.IV = keyAndIV.Skip(32).ToArray();
+
+                using (var decryptor = aes.CreateDecryptor())
+                using (var memoryStream = new MemoryStream(cipherBytes, 16, cipherBytes.Length - 16))
+                using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                using (var streamReader = new StreamReader(cryptoStream))
+                {
+                    return streamReader.ReadToEnd();
+                }
             }
         }
     }
