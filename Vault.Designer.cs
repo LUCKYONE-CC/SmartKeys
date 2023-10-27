@@ -36,7 +36,7 @@
             // 
             // lB_entryListBox
             // 
-            lB_entryListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            lB_entryListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lB_entryListBox.FormattingEnabled = true;
             lB_entryListBox.ItemHeight = 15;
             lB_entryListBox.Location = new Point(12, 42);
@@ -67,7 +67,7 @@
             // 
             // pan_form
             // 
-            pan_form.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            pan_form.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pan_form.Location = new Point(174, 42);
             pan_form.Name = "pan_form";
             pan_form.Size = new Size(614, 394);

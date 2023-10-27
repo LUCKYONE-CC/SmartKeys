@@ -84,7 +84,7 @@ namespace SmartKeys
             {
                 DefaultEntry selectedEntry = vault.Entrys[selectedIndex];
 
-                if(selectedEntry != null)
+                if (selectedEntry != null)
                 {
                     CreateEditEntry createEditEntry = new CreateEditEntry(selectedEntry.Password, selectedEntry.Description, selectedEntry.Username, selectedEntry.Title);
                     createEditEntry.TopLevel = false;
