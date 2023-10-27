@@ -72,6 +72,7 @@
             Controls.Add(lB_entryListBox);
             Name = "Vault";
             Text = "Vault";
+            FormClosed += Vault_FormClosed;
             ResumeLayout(false);
         }
 

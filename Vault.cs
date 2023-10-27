@@ -53,5 +53,10 @@ namespace SmartKeys
         {
 
         }
+
+        private void Vault_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
