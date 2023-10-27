@@ -37,7 +37,7 @@ namespace SmartKeys
 
                 createEditEntry.Close();
                 createEditEntry.Dispose();
-                var newEntry = KVHandler.AddEntry(filePath, entry, "1234");
+                var newEntry = KVHandler.AddEntry(filePath, entry, password);
                 vault.Entrys.Add(newEntry);
                 RefreshList(vault.Entrys);
             }
@@ -53,7 +53,7 @@ namespace SmartKeys
 
                 if (selectedEntry != null)
                 {
-                    KVHandler.RemoveEntry(filePath, selectedEntry.Title, "1234");
+                    KVHandler.RemoveEntry(filePath, selectedEntry.Title, password);
                     vault.Entrys.Remove(selectedEntry);
                     RefreshList(vault.Entrys);
                 }
