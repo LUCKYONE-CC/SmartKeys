@@ -37,6 +37,7 @@
             rtB_description = new RichTextBox();
             lab_description = new Label();
             btn_save = new Button();
+            cb_showHidePasswd = new CheckBox();
             SuspendLayout();
             // 
             // tB_title
@@ -84,7 +85,6 @@
             // 
             tB_password.Location = new Point(223, 150);
             tB_password.Name = "tB_password";
-            tB_password.PasswordChar = '*';
             tB_password.Size = new Size(156, 23);
             tB_password.TabIndex = 4;
             tB_password.UseSystemPasswordChar = true;
@@ -117,11 +117,23 @@
             btn_save.UseVisualStyleBackColor = true;
             btn_save.Click += btn_save_Click;
             // 
+            // cb_showHidePasswd
+            // 
+            cb_showHidePasswd.AutoSize = true;
+            cb_showHidePasswd.Location = new Point(385, 154);
+            cb_showHidePasswd.Name = "cb_showHidePasswd";
+            cb_showHidePasswd.Size = new Size(55, 19);
+            cb_showHidePasswd.TabIndex = 9;
+            cb_showHidePasswd.Text = "Show";
+            cb_showHidePasswd.UseVisualStyleBackColor = true;
+            cb_showHidePasswd.CheckedChanged += cb_showHidePasswd_CheckedChanged;
+            // 
             // CreateEditEntry
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(616, 358);
+            Controls.Add(cb_showHidePasswd);
             Controls.Add(btn_save);
             Controls.Add(lab_description);
             Controls.Add(rtB_description);
@@ -149,5 +161,6 @@
         private RichTextBox rtB_description;
         private Label lab_description;
         private Button btn_save;
+        private CheckBox cb_showHidePasswd;
     }
 }

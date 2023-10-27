@@ -50,5 +50,20 @@ namespace SmartKeys
             tB_username.Text = username;
             rtB_description.Text = description;
         }
+
+        private void cb_showHidePasswd_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cb_showHidePasswd.Checked)
+            {
+                cb_showHidePasswd.Text = "Hide";
+                tB_password.UseSystemPasswordChar = false;
+                tB_password.Text = password;
+            }
+            else
+            {
+                cb_showHidePasswd.Text = "Show";
+                tB_password.UseSystemPasswordChar = true;
+            }
+        }
     }
 }
