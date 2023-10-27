@@ -1,4 +1,6 @@
-﻿using System.Security.Cryptography;
+﻿using System;
+using System.IO;
+using System.Security.Cryptography;
 using System.Text;
 
 namespace SmartKeys
@@ -16,14 +18,14 @@ namespace SmartKeys
         public static string Encrypt(string plainText, string password)
         {
             byte[] salt = new byte[16];
-            using (var random = new RNGCryptoServiceProvider())
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
-                random.GetBytes(salt);
+                rng.GetBytes(salt);
             }
 
             byte[] keyAndIV = GetKeyAndIV(password, salt);
 
-            using (var aes = new AesCryptoServiceProvider())
+            using (var aes = Aes.Create())
             {
                 aes.Key = keyAndIV.Take(32).ToArray();
                 aes.IV = keyAndIV.Skip(32).ToArray();
@@ -50,7 +52,7 @@ namespace SmartKeys
             byte[] salt = cipherBytes.Take(16).ToArray();
             byte[] keyAndIV = GetKeyAndIV(password, salt);
 
-            using (var aes = new AesCryptoServiceProvider())
+            using (var aes = Aes.Create())
             {
                 aes.Key = keyAndIV.Take(32).ToArray();
                 aes.IV = keyAndIV.Skip(32).ToArray();
