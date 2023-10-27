@@ -35,7 +35,7 @@ namespace SmartKeys
 
                         MessageBox.Show("Datenbank erfolgreich geladen!", "Erfolg", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        Vault dashboard = new Vault(vault, selectedFilePath);
+                        Vault dashboard = new Vault(vault, selectedFilePath, enteredPassword);
                         this.Hide();
                         dashboard.Show();
                     }

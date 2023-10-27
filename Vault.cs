@@ -1,14 +1,5 @@
 ﻿using SmartKeys.Helper;
 using SmartKeys.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SmartKeys
 {
@@ -16,7 +7,8 @@ namespace SmartKeys
     {
         private readonly string filePath = "";
         private readonly KeyVault vault = new KeyVault();
-        public Vault(KeyVault vault, string filePath)
+        private readonly string password = "";
+        public Vault(KeyVault vault, string filePath, string password)
         {
             InitializeComponent();
 
@@ -24,6 +16,7 @@ namespace SmartKeys
             this.filePath = filePath;
 
             RefreshList(vault.Entrys);
+            this.password = password;
         }
 
         private void btn_createEntry_Click(object sender, EventArgs e)
