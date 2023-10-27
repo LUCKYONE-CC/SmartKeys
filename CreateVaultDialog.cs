@@ -33,15 +33,12 @@ namespace SmartKeys
 
         private void btn_generatePasswd_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(tB_passwd.Text))
-            {
-                MessageBox.Show("Bitte geben Sie ein Passwort ein.", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                DialogResult = DialogResult.OK;
-                Close();
-            }
+            Random random = new Random();
+            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            string passwd = new string(Enumerable.Repeat(chars, 16).Select(s => s[random.Next(s.Length)]).ToArray());
+            tB_passwd.Text = passwd;
+            Clipboard.SetText(passwd);
+            MessageBox.Show("Passwort wurde in die Zwischenablage kopiert.", "Passwort generiert", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
