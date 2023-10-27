@@ -1,15 +1,6 @@
 ﻿using SmartKeys.Exceptions;
 using SmartKeys.Helper;
 using SmartKeys.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace SmartKeys
 {
@@ -34,7 +25,6 @@ namespace SmartKeys
             {
                 string selectedFilePath = openFileDia_database_file.FileName;
 
-                // Zeige den InputBox-Dialog, um das Passwort abzufragen
                 string enteredPassword = Microsoft.VisualBasic.Interaction.InputBox("Bitte geben Sie das Passwort ein:", "Passwort eingeben", "");
 
                 if (!string.IsNullOrWhiteSpace(enteredPassword))
@@ -69,17 +59,13 @@ namespace SmartKeys
 
         private void btn_ceateNewVault_Click(object sender, EventArgs e)
         {
-            // Öffnen des Passwortdialogs
             CreateVaultDialog passwordDialog = new CreateVaultDialog();
 
-            // Zeige den Dialog und überprüfe, ob der Benutzer auf "OK" klickt
             DialogResult result = passwordDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
                 string enteredPassword = passwordDialog.Password;
-
-                // Überprüfen Sie hier die Stärke des Passworts und handeln Sie entsprechend
 
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Filter = "Konfigurationsdatei|*.kv";
