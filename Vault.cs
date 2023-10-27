@@ -15,10 +15,12 @@ namespace SmartKeys
     public partial class Vault : Form
     {
         private readonly string filePath = "";
+        private readonly KeyVault vault = new KeyVault();
         public Vault(KeyVault vault, string filePath)
         {
             InitializeComponent();
 
+            this.vault = vault;
             this.filePath = filePath;
 
             foreach (var entry in vault.Entrys)
@@ -58,5 +60,36 @@ namespace SmartKeys
         {
             Environment.Exit(0);
         }
+
+        private void Vault_Load(object sender, EventArgs e)
+        {
+            CreateEditEntry createEditEntry = new CreateEditEntry();
+            createEditEntry.TopLevel = false;
+            pan_form.Controls.Add(createEditEntry);
+            createEditEntry.FormBorderStyle = FormBorderStyle.None;
+            createEditEntry.Dock = DockStyle.Fill;
+            createEditEntry.Show();
+        }
+
+        private void lB_entryListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int selectedIndex = lB_entryListBox.SelectedIndex;
+
+            if (selectedIndex >= 0 && selectedIndex < vault.Entrys.Count)
+            {
+                DefaultEntry selectedEntry = vault.Entrys[selectedIndex];
+
+                if(selectedEntry != null)
+                {
+                    CreateEditEntry createEditEntry = new CreateEditEntry(selectedEntry.Password, selectedEntry.Description, selectedEntry.Username, selectedEntry.Title);
+                    createEditEntry.TopLevel = false;
+                    pan_form.Controls.Add(createEditEntry);
+                    createEditEntry.FormBorderStyle = FormBorderStyle.None;
+                    createEditEntry.Dock = DockStyle.Fill;
+                    createEditEntry.Show();
+                }
+            }
+        }
+
     }
 }

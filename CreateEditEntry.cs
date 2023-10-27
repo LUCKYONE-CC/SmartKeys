@@ -20,6 +20,14 @@ namespace SmartKeys
         {
             InitializeComponent();
         }
+        public CreateEditEntry(string password, string description, string username, string title)
+        {
+            InitializeComponent();
+            tB_password.Text = password;
+            tB_username.Text = username;
+            tB_title.Text = title;
+            rtB_description.Text = description;
+        }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
         {
