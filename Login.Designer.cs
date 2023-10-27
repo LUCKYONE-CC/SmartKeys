@@ -35,9 +35,9 @@
             // 
             // btn_select_database
             // 
-            btn_select_database.Location = new Point(286, 190);
+            btn_select_database.Location = new Point(166, 96);
             btn_select_database.Name = "btn_select_database";
-            btn_select_database.Size = new Size(108, 23);
+            btn_select_database.Size = new Size(125, 23);
             btn_select_database.TabIndex = 2;
             btn_select_database.Text = "Select Keyvault";
             btn_select_database.UseVisualStyleBackColor = true;
@@ -45,7 +45,7 @@
             // 
             // btn_ceateNewVault
             // 
-            btn_ceateNewVault.Location = new Point(286, 219);
+            btn_ceateNewVault.Location = new Point(166, 125);
             btn_ceateNewVault.Name = "btn_ceateNewVault";
             btn_ceateNewVault.Size = new Size(125, 23);
             btn_ceateNewVault.TabIndex = 4;
@@ -57,12 +57,10 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(471, 270);
             Controls.Add(btn_ceateNewVault);
             Controls.Add(btn_select_database);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximumSize = new Size(816, 489);
-            MinimumSize = new Size(816, 489);
             Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login";
