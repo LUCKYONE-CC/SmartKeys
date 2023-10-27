@@ -52,7 +52,19 @@ namespace SmartKeys
 
         private void btn_deleteEntry_Click(object sender, EventArgs e)
         {
+            int selectedIndex = lB_entryListBox.SelectedIndex;
 
+            if (selectedIndex >= 0 && selectedIndex < vault.Entrys.Count)
+            {
+                DefaultEntry selectedEntry = vault.Entrys[selectedIndex];
+
+                if (selectedEntry != null)
+                {
+                    KVHandler.RemoveEntry(filePath, selectedEntry.Title, "1234");
+                    vault.Entrys.Remove(selectedEntry);
+                    RefreshList(vault.Entrys);
+                }
+            }
         }
 
         private void Vault_FormClosed(object sender, FormClosedEventArgs e)
