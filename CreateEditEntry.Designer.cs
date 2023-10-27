@@ -133,6 +133,7 @@
             Controls.Add(tB_title);
             Name = "CreateEditEntry";
             Text = "CreateEditEntry";
+            Load += CreateEditEntry_Load;
             ResumeLayout(false);
             PerformLayout();
         }

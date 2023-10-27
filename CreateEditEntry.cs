@@ -16,6 +16,10 @@ namespace SmartKeys
         public string Title { get { return tB_title.Text; } }
         public string Username { get { return tB_username.Text; } }
         public string Description { get { return rtB_description.Text; } }
+        private string password;
+        private string title;
+        private string username;
+        private string description;
         public CreateEditEntry()
         {
             InitializeComponent();
@@ -23,10 +27,10 @@ namespace SmartKeys
         public CreateEditEntry(string password, string description, string username, string title)
         {
             InitializeComponent();
-            tB_password.Text = password;
-            tB_username.Text = username;
-            tB_title.Text = title;
-            rtB_description.Text = description;
+            this.password = password;
+            this.username = username;
+            this.title = title;
+            this.description = description;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -37,6 +41,14 @@ namespace SmartKeys
         {
             DialogResult = DialogResult.OK;
             Close();
+        }
+
+        private void CreateEditEntry_Load(object sender, EventArgs e)
+        {
+            tB_password.Text = password;
+            tB_title.Text = title;
+            tB_username.Text = username;
+            rtB_description.Text = description;
         }
     }
 }

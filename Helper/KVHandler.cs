@@ -39,7 +39,7 @@ namespace SmartKeys.Helper
             return JsonConvert.DeserializeObject<KeyVault>(decryptedContent);
         }
 
-        public static void AddEntry(string filePath, DefaultEntry entry, string password)
+        public static DefaultEntry AddEntry(string filePath, DefaultEntry entry, string password)
         {
             KeyVault vault = ReadKV(filePath, password);
 
@@ -59,6 +59,8 @@ namespace SmartKeys.Helper
             WriteVaultToFile(vault, password, filePath);
 
             MessageBox.Show($"Der Eintrag '{entry.Title}' wurde hinzugefügt.");
+
+            return entry;
         }
 
         public static void RemoveEntry(string filePath, string title, string password)

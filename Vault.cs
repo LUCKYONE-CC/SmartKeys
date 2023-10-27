@@ -23,10 +23,7 @@ namespace SmartKeys
             this.vault = vault;
             this.filePath = filePath;
 
-            foreach (var entry in vault.Entrys)
-            {
-                lB_entryListBox.Items.Add(entry.Title);
-            }
+            RefreshList(vault.Entrys);
         }
 
         private void btn_createEntry_Click(object sender, EventArgs e)
@@ -47,7 +44,9 @@ namespace SmartKeys
 
                 createEditEntry.Close();
                 createEditEntry.Dispose();
-                KVHandler.AddEntry(filePath, entry, "1234");
+                var newEntry = KVHandler.AddEntry(filePath, entry, "1234");
+                vault.Entrys.Add(newEntry);
+                RefreshList(vault.Entrys);
             }
         }
 
@@ -73,6 +72,7 @@ namespace SmartKeys
 
         private void lB_entryListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            pan_form.Controls.Clear();
             int selectedIndex = lB_entryListBox.SelectedIndex;
 
             if (selectedIndex >= 0 && selectedIndex < vault.Entrys.Count)
@@ -90,6 +90,13 @@ namespace SmartKeys
                 }
             }
         }
-
+        private void RefreshList(List<DefaultEntry> entries)
+        {
+            lB_entryListBox.Items.Clear();
+            foreach (var entry in entries)
+            {
+                lB_entryListBox.Items.Add(entry.Title);
+            }
+        }
     }
 }
