@@ -38,18 +38,20 @@
             // 
             lB_entryListBox.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lB_entryListBox.FormattingEnabled = true;
-            lB_entryListBox.ItemHeight = 15;
-            lB_entryListBox.Location = new Point(12, 42);
+            lB_entryListBox.ItemHeight = 32;
+            lB_entryListBox.Location = new Point(22, 90);
+            lB_entryListBox.Margin = new Padding(6, 6, 6, 6);
             lB_entryListBox.Name = "lB_entryListBox";
-            lB_entryListBox.Size = new Size(156, 394);
+            lB_entryListBox.Size = new Size(286, 836);
             lB_entryListBox.TabIndex = 0;
             lB_entryListBox.SelectedIndexChanged += lB_entryListBox_SelectedIndexChanged;
             // 
             // btn_createEntry
             // 
-            btn_createEntry.Location = new Point(12, 12);
+            btn_createEntry.Location = new Point(22, 26);
+            btn_createEntry.Margin = new Padding(6, 6, 6, 6);
             btn_createEntry.Name = "btn_createEntry";
-            btn_createEntry.Size = new Size(75, 23);
+            btn_createEntry.Size = new Size(139, 49);
             btn_createEntry.TabIndex = 1;
             btn_createEntry.Text = "Create new";
             btn_createEntry.UseVisualStyleBackColor = true;
@@ -57,9 +59,10 @@
             // 
             // btn_deleteEntry
             // 
-            btn_deleteEntry.Location = new Point(93, 12);
+            btn_deleteEntry.Location = new Point(173, 26);
+            btn_deleteEntry.Margin = new Padding(6, 6, 6, 6);
             btn_deleteEntry.Name = "btn_deleteEntry";
-            btn_deleteEntry.Size = new Size(75, 23);
+            btn_deleteEntry.Size = new Size(135, 49);
             btn_deleteEntry.TabIndex = 2;
             btn_deleteEntry.Text = "Delete";
             btn_deleteEntry.UseVisualStyleBackColor = true;
@@ -68,20 +71,22 @@
             // pan_form
             // 
             pan_form.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pan_form.Location = new Point(174, 42);
+            pan_form.Location = new Point(323, 90);
+            pan_form.Margin = new Padding(6, 6, 6, 6);
             pan_form.Name = "pan_form";
-            pan_form.Size = new Size(614, 394);
+            pan_form.Size = new Size(1140, 841);
             pan_form.TabIndex = 3;
             // 
             // Vault
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(13F, 32F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1486, 960);
             Controls.Add(pan_form);
             Controls.Add(btn_deleteEntry);
             Controls.Add(btn_createEntry);
             Controls.Add(lB_entryListBox);
+            Margin = new Padding(6, 6, 6, 6);
             Name = "Vault";
             Text = "Vault";
             FormClosed += Vault_FormClosed;
