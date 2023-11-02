@@ -51,7 +51,8 @@
             {
                 cb_showHidePasswd.Text = "Hide";
                 tB_password.UseSystemPasswordChar = false;
-                tB_password.Text = _password;
+                if(_password != null)
+                    tB_password.Text = _password;
             }
             else
             {
