@@ -6,21 +6,24 @@
         public string Title { get { return tB_title.Text; } }
         public string Username { get { return tB_username.Text; } }
         public string Description { get { return rtB_description.Text; } }
-        private string password;
-        private string title;
-        private string username;
-        private string description;
+        private Guid _id;
+        private string _password;
+        private string _title;
+        private string _username;
+        private string _description;
+
         public CreateEditEntry()
         {
             InitializeComponent();
         }
-        public CreateEditEntry(string password, string description, string username, string title)
+        public CreateEditEntry(Guid id, string password, string description, string username, string title)
         {
             InitializeComponent();
-            this.password = password;
-            this.username = username;
-            this.title = title;
-            this.description = description;
+            _id = id;
+            _password = password;
+            _username = username;
+            _title = title;
+            _description = description;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)
@@ -35,10 +38,11 @@
 
         private void CreateEditEntry_Load(object sender, EventArgs e)
         {
-            tB_password.Text = password;
-            tB_title.Text = title;
-            tB_username.Text = username;
-            rtB_description.Text = description;
+            tB_password.Text = _password;
+            tB_title.Text = _title;
+            tB_username.Text = _username;
+            rtB_description.Text = _description;
+            Console.WriteLine(_id);
         }
 
         private void cb_showHidePasswd_CheckedChanged(object sender, EventArgs e)
@@ -47,7 +51,7 @@
             {
                 cb_showHidePasswd.Text = "Hide";
                 tB_password.UseSystemPasswordChar = false;
-                tB_password.Text = password;
+                tB_password.Text = _password;
             }
             else
             {

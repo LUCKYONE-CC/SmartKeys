@@ -54,6 +54,7 @@ namespace SmartKeys.Helper
                 throw new Exception($"Eintrag mit dem Titel '{entry.Title}' existiert bereits.");
             }
 
+            entry.Id = Guid.NewGuid();
             vault.Entrys.Add(entry);
 
             WriteVaultToFile(vault, password, filePath);
@@ -63,7 +64,7 @@ namespace SmartKeys.Helper
             return entry;
         }
 
-        public static void RemoveEntry(string filePath, string title, string password)
+        public static void RemoveEntry(string filePath, Guid id, string password)
         {
             KeyVault vault = ReadKV(filePath, password);
 
@@ -77,7 +78,7 @@ namespace SmartKeys.Helper
                 throw new Exception("Es wurden keine Einträge gefunden.");
             }
 
-            DefaultEntry entryToRemove = vault.Entrys.Find(e => e.Title == title);
+            DefaultEntry entryToRemove = vault.Entrys.Find(e => e.Id == id);
 
             if (entryToRemove == null)
             {
@@ -88,7 +89,7 @@ namespace SmartKeys.Helper
 
             WriteVaultToFile(vault, password, filePath);
 
-            Console.WriteLine($"Der Eintrag '{title}' wurde entfernt.");
+            Console.WriteLine($"Der Eintrag '{id}' wurde entfernt.");
         }
 
         private static void WriteVaultToFile(KeyVault vault, string password, string filePath)
@@ -96,7 +97,7 @@ namespace SmartKeys.Helper
             string jsonContent = JsonConvert.SerializeObject(vault, Formatting.Indented);
 
             string encryptedContent = Security.Encrypt(jsonContent, password);
-
+            
             File.WriteAllText(filePath, BCrypt.Net.BCrypt.HashPassword(password) + Environment.NewLine + encryptedContent);
         }
 

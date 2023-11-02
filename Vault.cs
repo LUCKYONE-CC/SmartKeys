@@ -29,6 +29,7 @@ namespace SmartKeys
             {
                 DefaultEntry entry = new DefaultEntry
                 {
+                    Id = Guid.NewGuid(),
                     Title = createEditEntry.Title,
                     Username = createEditEntry.Username,
                     Password = createEditEntry.Password,
@@ -53,7 +54,7 @@ namespace SmartKeys
 
                 if (selectedEntry != null)
                 {
-                    KVHandler.RemoveEntry(filePath, selectedEntry.Title, password);
+                    KVHandler.RemoveEntry(filePath, selectedEntry.Id, password);
                     vault.Entrys.Remove(selectedEntry);
                     RefreshList(vault.Entrys);
                 }
@@ -86,7 +87,7 @@ namespace SmartKeys
 
                 if (selectedEntry != null)
                 {
-                    CreateEditEntry createEditEntry = new CreateEditEntry(selectedEntry.Password, selectedEntry.Description, selectedEntry.Username, selectedEntry.Title);
+                    CreateEditEntry createEditEntry = new CreateEditEntry(selectedEntry.Id, selectedEntry.Password, selectedEntry.Description, selectedEntry.Username, selectedEntry.Title);
                     createEditEntry.TopLevel = false;
                     pan_form.Controls.Add(createEditEntry);
                     createEditEntry.FormBorderStyle = FormBorderStyle.None;
