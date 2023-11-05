@@ -1,4 +1,5 @@
 # 🛠️ Currently under maintenance 🛠️
+[![CodeFactor](https://www.codefactor.io/repository/github/luckyone-cc/smartkeys/badge)](https://www.codefactor.io/repository/github/luckyone-cc/smartkeys)
 # SmartKeys Vault Manager
 
 SmartKeys Vault Manager is a C# application that allows users to securely manage their passwords and sensitive information in an encrypted vault.
